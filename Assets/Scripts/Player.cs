@@ -8,8 +8,7 @@ public class Player : MonoBehaviour
     [SerializeField] public float speed;
 
     // Variable pour la vitesse max
-    [SerializeField] public float maxSpeedX;
-    [SerializeField] public float maxSpeedY;
+    [SerializeField] public Vector2 maxSpeed;
 
     // Variable pour l'attaque
     [SerializeField] public bool attack;
