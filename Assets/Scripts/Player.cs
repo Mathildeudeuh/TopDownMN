@@ -18,8 +18,7 @@ public class Player : MonoBehaviour
     public Controls controls;
 
     // Varaible pour le déplacement
-    private float directionX;
-    private float directionY;
+    private Vector2 direction;
 
     // Varaible pour attaquer
     private bool canAttack = false;
@@ -42,20 +41,18 @@ public class Player : MonoBehaviour
 
     private void Attack_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        if (directionX > 0)
-        {
-
-        }
-    }
-
-    private void Move_canceled(UnityEngine.InputSystem.InputAction.CallbackContext obj)
-    {
-        
+        animator.SetBool("Attack", true);
     }
 
     private void Move_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
+        direction = obj.ReadValue<Vector2>();
+        animator.SetFloat("Walk", CanWalk);
+    }
 
+    private void Move_canceled(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        direction = Vector2.zero;
     }
 
     // Start is called before the first frame update
