@@ -60,8 +60,8 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        var moveX = Mathf.Abs(body2D.velocity.x);
-        var moveY = Mathf.Abs(body2D.velocity.y);
+        /*var moveX = Vector2.right * (direction * speed);
+        var moveY = Vector2.up * (direction*  speed);
 
         if (moveX < maxSpeed)
         {
@@ -72,11 +72,9 @@ public class Player : MonoBehaviour
         {
             body2D.AddForce(direction);
         }
-        //animator.SetFloat("Walk", jsp);
+        //animator.SetFloat("Walk", jsp);*/
     }
 
-   
-    // Update is called once per frame
     void Update()
     {
         
