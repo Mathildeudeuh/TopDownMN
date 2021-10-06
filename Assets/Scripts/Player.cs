@@ -23,14 +23,17 @@ public class Player : MonoBehaviour
     private Rigidbody2D body2D;
 
     // Variable pour les sprites
-    //private SpriteRenderer spriteRenderer;
+    private SpriteRenderer spriteRenderer;
 
     // Variable pour les animation
     private Animator animator;
+    
 
     void Start()
     {
+       // rigidbody2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void OnEnable()
@@ -40,12 +43,19 @@ public class Player : MonoBehaviour
         controls.Main.Move.performed += Move_performed;
         controls.Main.Move.canceled += Move_canceled;
         controls.Main.Attack.performed += Attack_performed;
+      
     }
 
     private void Attack_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
         canAttack = true;
         animator.SetBool("Attack", true);
+
+      //  if (direction != 0)
+      //      animator.SetBool("CanWalk", true);                                                                       // test d'arret pendant l'attaque
+      //  else
+      //     animator.SetBool("CanWalk", false);
+
     }
 
     private void Move_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
@@ -76,6 +86,7 @@ public class Player : MonoBehaviour
             body2D.AddForce(direction);
         }
         //animator.SetFloat("Walk", jsp);*/
+
     }
 
     void Update()
