@@ -4,17 +4,31 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    // Variable pour se déplacer
+    // Variable pour la force d'impulsion au déplacement
     [SerializeField] public float speed;
 
-    // Variable pour la vitsse max
-    [SerializeField] public float maxSpeed;
+    // Variable pour la vitesse max
+    [SerializeField] public float maxSpeedX;
+    [SerializeField] public float maxSpeedY;
 
     // Variable pour l'attaque
     [SerializeField] public bool attack;
 
     // Variable pour les contrôles
     public Controls controls;
+
+    // Varaible pour le déplacement
+    private float directionX;
+    private float directionY;
+
+    // Varaible pour attaquer
+    private bool canAttack = false;
+
+    // Variable pour les sprites
+    private SpriteRenderer spriteRenderer;
+
+    // Variable pour les animation
+    private Animator animator;
 
 
     private void OnEnable()
@@ -28,17 +42,20 @@ public class Player : MonoBehaviour
 
     private void Attack_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        throw new System.NotImplementedException();
+        if (directionX > 0)
+        {
+
+        }
     }
 
     private void Move_canceled(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        throw new System.NotImplementedException();
+        
     }
 
     private void Move_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
-        throw new System.NotImplementedException();
+
     }
 
     // Start is called before the first frame update
