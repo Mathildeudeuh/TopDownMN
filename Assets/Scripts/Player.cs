@@ -47,7 +47,7 @@ public class Player : MonoBehaviour
     private void Move_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
         direction = obj.ReadValue<Vector2>();
-        animator.SetFloat("Walk", CanWalk);
+       //animator.SetFloat("Walk", CanWalk);
     }
 
     private void Move_canceled(UnityEngine.InputSystem.InputAction.CallbackContext obj)
