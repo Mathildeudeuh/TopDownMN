@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
@@ -46,37 +47,40 @@ public class Player : MonoBehaviour
       
     }
 
-    private void Attack_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    private void Attack_performed(InputAction.CallbackContext obj)
     {
         canAttack = true;
         animator.SetBool("Attack", true);
 
       //  if (direction != 0)
-      //      animator.SetBool("CanWalk", true);                                                                       // test d'arret pendant l'attaque
+      //      animator.SetBool("CanWalk", true);                                                                       // inferieur ou egal ))test d'arret pendant l'attaque
       //  else
       //     animator.SetBool("CanWalk", false);
 
     }
 
-    private void Move_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+
+    private void Move_performed(InputAction.CallbackContext obj)
     {
         direction = obj.ReadValue<Vector2>();
+        animator.SetBool("CanWalk", true);                                                                                            
 
-       //animator.SetFloat("Walk", CanWalk);
+        //animator.SetFloat("Walk", CanWalk);
 
     }
 
-    private void Move_canceled(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    private void Move_canceled(InputAction.CallbackContext obj)
     {
         direction = Vector2.zero;
     }
 
     private void FixedUpdate()
     {
-        /*var moveX = Vector2.right * (direction * speed);
+        var moveX = Vector2.right * (direction * speed);
         var moveY = Vector2.up * (direction*  speed);
 
-        if (moveX < maxSpeed)
+
+        if (moveX.velocity.magnitude <= maxSpeed)
         {
             body2D.AddForce(direction);
         }
