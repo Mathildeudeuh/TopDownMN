@@ -8,11 +8,7 @@ public class Player : MonoBehaviour
     [SerializeField] public float speed;
 
     // Variable pour la vitesse max
-    [SerializeField] public float maxSpeedX;
-    [SerializeField] public float maxSpeedY;
-
-    // Variable pour l'attaque
-    [SerializeField] public bool attack;
+    [SerializeField] public float maxSpeed;
 
     // Variable pour les contrôles
     public Controls controls;
@@ -21,14 +17,21 @@ public class Player : MonoBehaviour
     private Vector2 direction;
 
     // Varaible pour attaquer
-    private bool canAttack = false;
+    public bool canAttack = false;
+
+    // Variable pour le rigid body
+    private Rigidbody2D body2D;
 
     // Variable pour les sprites
-    private SpriteRenderer spriteRenderer;
+    //private SpriteRenderer spriteRenderer;
 
     // Variable pour les animation
     private Animator animator;
 
+    void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
 
     private void OnEnable()
     {
@@ -41,13 +44,16 @@ public class Player : MonoBehaviour
 
     private void Attack_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
+        canAttack = true;
         animator.SetBool("Attack", true);
     }
 
     private void Move_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
         direction = obj.ReadValue<Vector2>();
+
        //animator.SetFloat("Walk", CanWalk);
+
     }
 
     private void Move_canceled(UnityEngine.InputSystem.InputAction.CallbackContext obj)
@@ -55,13 +61,23 @@ public class Player : MonoBehaviour
         direction = Vector2.zero;
     }
 
-    // Start is called before the first frame update
-    void Start()
+    private void FixedUpdate()
     {
-        
+        /*var moveX = Vector2.right * (direction * speed);
+        var moveY = Vector2.up * (direction*  speed);
+
+        if (moveX < maxSpeed)
+        {
+            body2D.AddForce(direction);
+        }
+
+        if (moveY < maxSpeed)
+        {
+            body2D.AddForce(direction);
+        }
+        //animator.SetFloat("Walk", jsp);*/
     }
 
-    // Update is called once per frame
     void Update()
     {
         
