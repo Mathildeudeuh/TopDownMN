@@ -7,8 +7,12 @@ public class Health : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        var damage = FindObjetcOfType<Mobs>();
+        /*var damageMobs = FindObjetcOfType<Mobs>();
 
-        damage.ReduireVie();
+        damageMobs.LoseHealth1();
+
+        var damagePlayer = FindObjectOfType<Player>();
+
+        damagePlayer.LoseHealth2();*/
     }
 }
