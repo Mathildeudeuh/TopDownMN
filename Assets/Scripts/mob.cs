@@ -4,25 +4,24 @@ using UnityEngine;
 
 public class Mob : MonoBehaviour
 {
+    
     public float speed;                                                                                       //s'occupe de la speed
     private Transform target;                                                                                 //On va aller chercher la position du player(ici target) dans "Transform" situé dans l'Inspector
-    private GameObject spawnZone;
+    //private GameObject spawnZone;
     public int randomspawn;
-
 
     public GamoObject ennemie;
     public GameObject[] ennemies;
-   // public float spawnTime = 1.5f; 
+    // public float spawnTime = 1.5f; 
+    //[SerializeField] public GameObject spawnpoint;                                                     //
 
     void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();                         //on va aller chercher grace au tag(ici Player)sur le quel on reprend sa position(x , y ,z) dans le Trasform situé dans l'Inspector
       //  spawnZone = GameObject.FindGameObjectWithTag("SpawnZone");
-
         Instantiate(ennemies[0]);
         Instantiate(ennemies[1]);
         Instantiate(ennemies[2]);
-
     }
 
     Vector3 Spawn()
@@ -41,12 +40,20 @@ public class Mob : MonoBehaviour
         
     }
 
-    
-   
+    void Awake()
+    {
+        Invoke("SpawnNext", 2f);
+    }
+  /*  void SpawnNext()
+    {
+        GameObject newBox = Instantiate(spawnpoint);                                         //
+        newBox.transform.position = new Vector3();                                            //
+    }*/
 
-   // public Cell()
-   //{
+
+    // public Cell()
+    //{
     //     var coinFlip = Random.Range(0, 2);
-     //    IsTaken = coinFlip == 1;
-   // }
+    //    IsTaken = coinFlip == 1;
+    // }
 }
