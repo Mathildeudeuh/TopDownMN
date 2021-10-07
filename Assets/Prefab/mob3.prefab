@@ -117,8 +117,7 @@ MonoBehaviour:
   - {fileID: 5855112336054134679, guid: 51a3c67f9df560a4ebd2589f4b0224c4, type: 3}
   - {fileID: 4157516588877507677, guid: 3633bed5e0af9924f81838348251f895, type: 3}
   - {fileID: 8168182621683463185, guid: ce4d87d9d09c15948bcfaf2339e53570, type: 3}
+  spawnPoint: {fileID: 0}
   ennemies:
-  - {fileID: 1498228113928948175, guid: 219319faebd959d468c0b356dc96aff6, type: 3}
-  - {fileID: 4279312560256906939, guid: c99972db38f02cd408c4fe98046c6128, type: 3}
-  - {fileID: 7591459770855606545}
-  speed: 3
+  - {fileID: 0}
+  speed: 2
