@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class mob : MonoBehaviour
+public class Mob : MonoBehaviour
 {
     // Tableau pour les points de spawn
     public GameObject[] spawnPoints;
@@ -23,7 +23,25 @@ public class mob : MonoBehaviour
     //public int randomspawn;
 
     // public float spawnTime = 1.5f; 
-    //[SerializeField] public GameObject spawnpoint;                                                     //
+    //[SerializeField] public GameObject spawnpoint;
+    //
+
+
+
+
+
+
+
+    public GameObject mobPrefab;
+    public GameObject[] mobPrefabs;
+    public float Radius = 1;
+
+
+
+
+
+
+
 
     void Start()
     {
@@ -38,6 +56,8 @@ public class mob : MonoBehaviour
         Instantiate(spawnPoints[1]);
         Instantiate(spawnPoints[2]);
         Instantiate(spawnPoints[3]);*/
+
+
     }
 
 
@@ -65,10 +85,19 @@ public class mob : MonoBehaviour
     
     void Update()
     {
+
         transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime); //on change la position en 2D en faisant avancer le mob en lui faisant garder une speed constante ainsi que la position du target
-        var evil = Random.Range(0, 2); 
-        
+        var evil = Random.Range(0, 2);
+
     }
+
+    void SpawnObjectAtRandom()
+    {
+        Vector3 randomPos = Random.insideUnitCircle * Radius;                                //
+    }
+
+
+
 
     void Awake()
     {
