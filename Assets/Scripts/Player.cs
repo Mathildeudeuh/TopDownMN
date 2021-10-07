@@ -32,9 +32,10 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-       // rigidbody2D = GetComponent<Rigidbody2D>();
+        body2D = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        
     }
 
     private void OnEnable()
@@ -50,7 +51,7 @@ public class Player : MonoBehaviour
     private void Attack_performed(InputAction.CallbackContext obj)
     {
         canAttack = true;
-        animator.SetBool("Attack", true);
+        animator.SetBool("CanAttack", true);
 
       //  if (direction != 0)
       //      animator.SetBool("CanWalk", true);                                                                       // inferieur ou egal ))test d'arret pendant l'attaque
@@ -63,9 +64,9 @@ public class Player : MonoBehaviour
     private void Move_performed(InputAction.CallbackContext obj)
     {
         direction = obj.ReadValue<Vector2>();
-        animator.SetBool("CanWalk", true);                                                                                            
+        //animator.SetBool("CanWalk", true);                                                                                            
 
-        //animator.SetFloat("Walk", CanWalk);
+        animator.SetFloat("CanWalk", 1);
 
     }
 
@@ -76,19 +77,19 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        var moveX = Vector2.right * (direction * speed);
+       // var moveX = Vector2.right * (direction * speed);
         var moveY = Vector2.up * (direction*  speed);
+        var moveX = Mathf.Abs(body2D.velocity.x * speed);
 
-
-        if (moveX.velocity.magnitude <= maxSpeed)
+        if (body2D.velocity.sqrMagnitude <= maxSpeed)
         {
             body2D.AddForce(direction);
         }
 
-        if (moveY < maxSpeed)
-        {
-            body2D.AddForce(direction);
-        }
+        // if (body2D < maxSpeed)
+        //{
+        //    body2D.AddForce(direction);
+        //}
         //animator.SetFloat("Walk", jsp);*/
 
     }
