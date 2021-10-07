@@ -244,6 +244,21 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 98294148998248960, guid: bf92a9770b6c8f441a3211ceaef316d0, type: 3}
   m_PrefabInstance: {fileID: 98294148521789978}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &615395357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 615395354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a78afa88e805550478bdc7ae26afd9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2
+  maxSpeed: 5
+  canAttack: 0
 --- !u!50 &615395360
 Rigidbody2D:
   serializedVersion: 4
@@ -412,5 +427,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 98294148998248966, guid: bf92a9770b6c8f441a3211ceaef316d0, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: bf92a9770b6c8f441a3211ceaef316d0, type: 3}

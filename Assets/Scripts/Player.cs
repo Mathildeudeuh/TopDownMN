@@ -15,7 +15,9 @@ public class Player : MonoBehaviour
     public Controls controls;
 
     // Varaible pour le déplacement
-    private Vector2 direction;
+    private float directionX;
+    private float directionY;
+    //private float dirction;
 
     // Varaible pour attaquer
     public bool canAttack = false;
@@ -32,12 +34,18 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        // boyd2D se réfère au component RigidBody2D
         body2D = GetComponent<Rigidbody2D>();
+
+        // animator se réfère au component Animator
         animator = GetComponent<Animator>();
+
+        // sripteRenderer se réfère au component SpriteRenderer
         spriteRenderer = GetComponent<SpriteRenderer>();
         
     }
 
+    // Contrôles
     private void OnEnable()
     {
         var controls = new Controls();
@@ -50,40 +58,51 @@ public class Player : MonoBehaviour
 
     private void Attack_performed(InputAction.CallbackContext obj)
     {
+        // Le bouléen qui permet l'attaque passe en true
         canAttack = true;
-        animator.SetBool("CanAttack", true);
 
-      //  if (direction != 0)
-      //      animator.SetBool("CanWalk", true);                                                                       // inferieur ou egal ))test d'arret pendant l'attaque
-      //  else
-      //     animator.SetBool("CanWalk", false);
+        // L'animation d'attaque se lance
+        animator.SetBool("CanAttack", true);
+        Debug.Log("J'ATTAQUE MAIS CA SE VOIT PAS LA");
+
+        /*if (direction != 0)
+        animator.SetBool("CanWalk", true);                                                                       // inferieur ou egal ))test d'arret pendant l'attaque
+        else
+        animator.SetBool("CanWalk", false);*/
 
     }
 
 
     private void Move_performed(InputAction.CallbackContext obj)
     {
-        direction = obj.ReadValue<Vector2>();
-        //animator.SetBool("CanWalk", true);                                                                                            
+        // direction prend la valeur du vecteur de l'objet
+        directionX = obj.ReadValue<float>();
+        directionY = obj.ReadValue<float>();
+        //diection = obj.ReadVlue<Vector2>();
 
-        animator.SetFloat("CanWalk", 1);
+        // L'animation de marche se lance
+        animator.SetFloat("CanWalk", 0.3f);
 
+        Debug.Log("J'AVANCE MAIS CA SE VOIT PAS NON PLUS");
     }
 
     private void Move_canceled(InputAction.CallbackContext obj)
     {
-        direction = Vector2.zero;
+        // direction prend la valeur de zéro
+        directionX = 0;
+        directionY = 0;
+        //direction = Vector2.zero;
     }
 
     private void FixedUpdate()
     {
-       // var moveX = Vector2.right * (direction * speed);
-        var moveY = Vector2.up * (direction*  speed);
-        var moveX = Mathf.Abs(body2D.velocity.x * speed);
+       var move = new Vector2(directionX * speed, directionY * speed);
+       // var moveY = Vector2.up * (direction*  speed);
+       // var moveX = Mathf.Abs(body2D.velocity.x * speed);
 
         if (body2D.velocity.sqrMagnitude <= maxSpeed)
         {
-            body2D.AddForce(direction);
+            body2D.AddForce(move);
         }
 
         // if (body2D < maxSpeed)
@@ -96,6 +115,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        
+        //directionX = Input.GetAxisRaw("Horizontal");
+        //directionY = Input.GetAxisRaw("Vertical");
     }
 }
