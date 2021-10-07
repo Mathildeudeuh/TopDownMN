@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 98294148998248964}
   - component: {fileID: 98294148998248967}
-  - component: {fileID: 98294148998248966}
   - component: {fileID: 98294148998248961}
   - component: {fileID: 98294148998248965}
+  - component: {fileID: 5548937644006448701}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -85,21 +85,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &98294148998248966
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 98294148998248960}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a78afa88e805550478bdc7ae26afd9da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 10
-  maxSpeed: 20
-  canAttack: 0
 --- !u!95 &98294148998248961
 Animator:
   serializedVersion: 3
@@ -135,3 +120,18 @@ CapsuleCollider2D:
   m_Offset: {x: 0.010405451, y: -0.0029031634}
   m_Size: {x: 0.53621227, y: 0.8584}
   m_Direction: 0
+--- !u!114 &5548937644006448701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 98294148998248960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a78afa88e805550478bdc7ae26afd9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
+  maxSpeed: 0
+  canAttack: 0

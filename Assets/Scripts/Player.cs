@@ -32,12 +32,18 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        // boyd2D se réfère au component RigidBody2D
         body2D = GetComponent<Rigidbody2D>();
+
+        // animator se réfère au component Animator
         animator = GetComponent<Animator>();
+
+        // sripteRenderer se réfère au component SpriteRenderer
         spriteRenderer = GetComponent<SpriteRenderer>();
         
     }
 
+    // Contrôles
     private void OnEnable()
     {
         var controls = new Controls();
@@ -50,28 +56,35 @@ public class Player : MonoBehaviour
 
     private void Attack_performed(InputAction.CallbackContext obj)
     {
+        // Le bouléen qui permet l'attaque passe en true
         canAttack = true;
-        animator.SetBool("CanAttack", true);
 
-      //  if (direction != 0)
-      //      animator.SetBool("CanWalk", true);                                                                       // inferieur ou egal ))test d'arret pendant l'attaque
-      //  else
-      //     animator.SetBool("CanWalk", false);
+        // L'animation d'attaque se lance
+        animator.SetBool("CanAttack", true);
+        Debug.Log("J'ATTAQUE MAIS CA SE VOIT PAS LA");
+
+        /*if (direction != 0)
+        animator.SetBool("CanWalk", true);                                                                       // inferieur ou egal ))test d'arret pendant l'attaque
+        else
+        animator.SetBool("CanWalk", false);*/
 
     }
 
 
     private void Move_performed(InputAction.CallbackContext obj)
     {
-        direction = obj.ReadValue<Vector2>();
-        //animator.SetBool("CanWalk", true);                                                                                            
+        // direction prend la valeur du vecteur de l'objet
+        direction = obj.ReadValue<Vector2>();                                                                                        
 
-        animator.SetFloat("CanWalk", 1);
+        // L'animation de marche se lance
+        animator.SetFloat("CanWalk", 0.3f);
 
+        Debug.Log("J'AVANCE MAIS CA SE VOIT PAS NON PLUS");
     }
 
     private void Move_canceled(InputAction.CallbackContext obj)
     {
+        // direction prend la valeur de zéro
         direction = Vector2.zero;
     }
 
