@@ -15,7 +15,9 @@ public class Player : MonoBehaviour
     public Controls controls;
 
     // Varaible pour le déplacement
-    private Vector2 direction;
+    private float directionX;
+    private float directionY;
+    //private float dirction;
 
     // Varaible pour attaquer
     public bool canAttack = false;
@@ -74,7 +76,9 @@ public class Player : MonoBehaviour
     private void Move_performed(InputAction.CallbackContext obj)
     {
         // direction prend la valeur du vecteur de l'objet
-        direction = obj.ReadValue<Vector2>();                                                                                        
+        directionX = obj.ReadValue<float>();
+        directionY = obj.ReadValue<float>();
+        //diection = obj.ReadVlue<Vector2>();
 
         // L'animation de marche se lance
         animator.SetFloat("CanWalk", 0.3f);
@@ -85,18 +89,20 @@ public class Player : MonoBehaviour
     private void Move_canceled(InputAction.CallbackContext obj)
     {
         // direction prend la valeur de zéro
-        direction = Vector2.zero;
+        directionX = 0;
+        directionY = 0;
+        //direction = Vector2.zero;
     }
 
     private void FixedUpdate()
     {
-       // var moveX = Vector2.right * (direction * speed);
-        var moveY = Vector2.up * (direction*  speed);
-        var moveX = Mathf.Abs(body2D.velocity.x * speed);
+       var move = new Vector2(directionX * speed, directionY * speed);
+       // var moveY = Vector2.up * (direction*  speed);
+       // var moveX = Mathf.Abs(body2D.velocity.x * speed);
 
         if (body2D.velocity.sqrMagnitude <= maxSpeed)
         {
-            body2D.AddForce(direction);
+            body2D.AddForce(move);
         }
 
         // if (body2D < maxSpeed)
@@ -109,6 +115,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        
+        //directionX = Input.GetAxisRaw("Horizontal");
+        //directionY = Input.GetAxisRaw("Vertical");
     }
 }
