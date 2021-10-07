@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4279312560256906942}
   - component: {fileID: 4279312560256906937}
-  - component: {fileID: 4279312560256906936}
   - component: {fileID: 7587668331251262025}
+  - component: {fileID: -7964831878225999902}
   m_Layer: 1
   m_Name: mob2
   m_TagString: Untagged
@@ -84,19 +84,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4279312560256906936
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4279312560256906939}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dfe2f6f273eaf884ba7cd104d5ac6cbe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 1
 --- !u!70 &7587668331251262025
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -113,3 +100,18 @@ CapsuleCollider2D:
   m_Offset: {x: 0.002424717, y: 0}
   m_Size: {x: 0.7489233, y: 0.875}
   m_Direction: 0
+--- !u!114 &-7964831878225999902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4279312560256906939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfe2f6f273eaf884ba7cd104d5ac6cbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2
+  randomspawn: 0
+  ennemies: []
