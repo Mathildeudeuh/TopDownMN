@@ -2,26 +2,56 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Mob : MonoBehaviour
+public class mob : MonoBehaviour
 {
+    // Tableau pour les points de spawn
+    public GameObject[] spawnPoints;
+
+    // Points de départ des ennemis
+    public GameObject spawnPoint;
     
+    // Tableau pour les ennemis
+    public GameObject[] ennemies;
+    
+    // Ennemis
+    public GamoObject ennemie;
+
+
     public float speed;                                                                                       //s'occupe de la speed
     private Transform target;                                                                                 //On va aller chercher la position du player(ici target) dans "Transform" situé dans l'Inspector
     //private GameObject spawnZone;
-    public int randomspawn;
+    //public int randomspawn;
 
-    public GamoObject ennemie;
-    public GameObject[] ennemies;
     // public float spawnTime = 1.5f; 
     //[SerializeField] public GameObject spawnpoint;                                                     //
 
     void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();                         //on va aller chercher grace au tag(ici Player)sur le quel on reprend sa position(x , y ,z) dans le Trasform situé dans l'Inspector
-      //  spawnZone = GameObject.FindGameObjectWithTag("SpawnZone");
-        Instantiate(ennemies[0]);
+                                                                                                               //  spawnZone = GameObject.FindGameObjectWithTag("SpawnZone");
+
+        /*Instantiate(ennemies[0]);
         Instantiate(ennemies[1]);
         Instantiate(ennemies[2]);
+
+        Instantiate(spawnPoints[0]);
+        Instantiate(spawnPoints[1]);
+        Instantiate(spawnPoints[2]);
+        Instantiate(spawnPoints[3]);*/
+    }
+
+
+    private void FirstIteration()
+    {
+        foreach(var ennemie in ennemies)
+        {
+            Instantiate(ennemie);
+        }
+
+        foreach(var spawnPoint in spawnPoints)
+        {
+            Instantiate(spawnPoint);
+        }
     }
 
     Vector3 Spawn()
