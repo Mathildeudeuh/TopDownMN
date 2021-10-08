@@ -96,7 +96,7 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-       var move = new Vector2(directionX * speed, directionY * speed);
+        var move = new Vector2(directionX * speed, directionY * speed);
        // var moveY = Vector2.up * (direction*  speed);
        // var moveX = Mathf.Abs(body2D.velocity.x * speed);
 
