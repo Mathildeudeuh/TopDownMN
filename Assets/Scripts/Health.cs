@@ -12,6 +12,7 @@ public class Health : MonoBehaviour
         //damageMobs.LoseHealth1();
 
         var damagePlayer = FindObjectOfType<Player>();
+        // VOIR AVEC LES TAGS
 
         damagePlayer.LoseHealth2();
     }

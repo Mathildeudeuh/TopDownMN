@@ -97,6 +97,7 @@ public class Player : MonoBehaviour
     public void LoseHealth2()
     {
         health = health - healthToLose;
+        Debug.Log("-1");
     }
 }
 
