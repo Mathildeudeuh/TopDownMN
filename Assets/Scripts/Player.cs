@@ -42,15 +42,26 @@ public class Player : MonoBehaviour
         // La valeur de la variable direction se réfère à l'axe X (horizontalement)
         direction.x = Input.GetAxisRaw("Horizontal");
         // On indique l'orientation horizontale de l'animation
-        animator.SetFloat("Horizontal", direction.x);
+        //animator.SetFloat("Horizontal", direction.x);
 
         // La valeur de la variable direction se réfère à l'axe Y (verticalement)
         direction.y = Input.GetAxisRaw("Vertical");
         // On indique l'orientation verticale de l'animation
-        animator.SetFloat("Vertical", direction.y);
+        //animator.SetFloat("Vertical", direction.y);
 
         // L'animation de marche se lance
         animator.SetFloat("CanWalk", direction.sqrMagnitude);
+
+        if (direction.x == 1 || direction.x == -1)
+        {
+            animator.SetFloat("Horizontal", direction.x);
+        }
+
+        if (direction.y == 1 || direction.y == -1)
+        {
+            animator.SetFloat("Vertical", direction.y);
+        }
+
     }
 
     // Contrôles
