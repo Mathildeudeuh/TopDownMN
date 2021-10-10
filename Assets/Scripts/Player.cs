@@ -2,21 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+//using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
     // Variable pour la force d'impulsion au déplacement
-    [SerializeField] public float speed;
+    [SerializeField] private float speed;
 
     [SerializeField] public int health;
 
     [SerializeField] public int healthToLose;
 
+    //[SerializeField] private Text pv;
+
     // Variable pour les contrôles
     public Controls controls;
 
     // Varaible pour le déplacement
-    private Vector2 direction;
+    public Vector2 direction;
 
     // Varaible pour attaquer
     public bool canAttack = false;
@@ -25,8 +28,8 @@ public class Player : MonoBehaviour
     private Rigidbody2D body2D;
 
     // Variable pour les animation
-    private Animator animator;
-    
+    public Animator animator;
+
 
     void Start()
     {
@@ -36,6 +39,17 @@ public class Player : MonoBehaviour
         // animator se réfère au component Animator
         animator = GetComponent<Animator>();
     }
+
+
+    // Contrôles
+    private void OnEnable()
+    {
+        var controls = new Controls();
+        controls.Enable();
+        controls.Main.Attack.performed += Attack_performed;
+        controls.Main.Attack.canceled += Attack_canceled;
+    }
+
 
     void Update()
     {
@@ -52,26 +66,10 @@ public class Player : MonoBehaviour
         // L'animation de marche se lance
         animator.SetFloat("CanWalk", direction.sqrMagnitude);
 
-        if (direction.x == 1 || direction.x == -1)
-        {
-            animator.SetFloat("Horizontal", direction.x);
-        }
-
-        if (direction.y == 1 || direction.y == -1)
-        {
-            animator.SetFloat("Vertical", direction.y);
-        }
+        Sword();
 
     }
 
-    // Contrôles
-    private void OnEnable()
-    {
-        var controls = new Controls();
-        controls.Enable();
-        controls.Main.Attack.performed += Attack_performed;
-        controls.Main.Attack.canceled += Attack_canceled;
-    }
 
 
     private void Attack_performed(InputAction.CallbackContext obj)
@@ -99,16 +97,35 @@ public class Player : MonoBehaviour
     {
         // On récupère la position du Rigid Body, on l'additionne à la valeur de la variable direction multipliée par la vitesse et le temps écoulé depuis la dernière frame
         body2D.MovePosition(body2D.position + direction * speed * Time.deltaTime);
-        
-        
+
+
         //var move = new Vector2(direction.x * speed, direction.y * speed);
     }
 
-
-    public void LoseHealth2()
+    private void LoseHealth2()
     {
         health = health - healthToLose;
-        Debug.Log("-1");
+        Debug.Log(health);
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Ennemy"))
+        {
+            LoseHealth2();
+        }
+    }
+
+    public void Sword()
+    {
+        if (direction.x == 1 || direction.x == -1)
+        {
+            animator.SetFloat("Horizontal", direction.x);
+        }
+
+        else if (direction.y == 1 || direction.y == -1)
+        {
+            animator.SetFloat("Vertical", direction.y);
+        }
     }
 }
 
