@@ -8,18 +8,14 @@ public class Player : MonoBehaviour
     // Variable pour la force d'impulsion au déplacement
     [SerializeField] public float speed;
 
-    // Variable pour la vitesse max
-    //[SerializeField] public float maxSpeed;
-
     // Variable pour les contrôles
     public Controls controls;
 
     // Varaible pour le déplacement
     private Vector2 direction;
-    //private float direction;
 
     // Varaible pour attaquer
-    //public bool canAttack = false;
+    public bool canAttack = false;
 
     // Variable pour le rigid body
     private Rigidbody2D body2D;
@@ -45,15 +41,16 @@ public class Player : MonoBehaviour
     }
 
     // Contrôles
-    /*private void OnEnable()
+    private void OnEnable()
     {
         var controls = new Controls();
         controls.Enable();
-        controls.Main.Move.performed += Move_performed;
-        controls.Main.Move.canceled += Move_canceled;
+        //controls.Main.Move.performed += Move_performed;
+        //controls.Main.Move.canceled += Move_canceled;
         controls.Main.Attack.performed += Attack_performed;
-      
+        controls.Main.Attack.canceled += Attack_canceled;
     }
+
 
     private void Attack_performed(InputAction.CallbackContext obj)
     {
@@ -61,17 +58,39 @@ public class Player : MonoBehaviour
         canAttack = true;
 
         // L'animation d'attaque se lance
-        animator.SetBool("CanAttack", true);
         Debug.Log("J'ATTAQUE MAIS CA SE VOIT PAS LA");
 
-        /*if (direction != 0)
-        animator.SetBool("CanWalk", true);                                                                       // inferieur ou egal ))test d'arret pendant l'attaque
-        else
-        animator.SetBool("CanWalk", false);
+       if (direction == Vector2.zero)
+        {
+        animator.SetBool("CanAttack", true);
+        }
+    }
 
+    private void Attack_canceled(InputAction.CallbackContext obj)
+    {
+        animator.SetBool("CanAttack", false);
+    }
+
+    private void FixedUpdate()
+    {
+        body2D.MovePosition(body2D.position + direction * speed * Time.deltaTime);
+        //var move = new Vector2(direction.x * speed, direction.y * speed);
     }
 
 
+        void Update()
+    {
+        direction.x = Input.GetAxisRaw("Horizontal");
+        animator.SetFloat("Horizontal", direction.x);
+
+        direction.y = Input.GetAxisRaw("Vertical");
+        animator.SetFloat("Vertical", direction.y);
+
+        animator.SetFloat("CanWalk", direction.sqrMagnitude);
+    }
+}
+
+/*
     private void Move_performed(InputAction.CallbackContext obj)
     {
         // direction prend la valeur du vecteur de l'objet
@@ -91,23 +110,5 @@ public class Player : MonoBehaviour
         direction.x = 0;
         direction.y = 0;
         //direction = Vector2.zero;
+
     }*/
-
-    private void FixedUpdate()
-    {
-        body2D.MovePosition(body2D.position + direction * speed * Time.deltaTime);
-        //var move = new Vector2(direction.x * speed, direction.y * speed);
-
-    }
-
-    void Update()
-    {
-        direction.x = Input.GetAxisRaw("Horizontal");
-        animator.SetFloat("Horizontal", direction.x);
-
-        direction.y = Input.GetAxisRaw("Vertical");
-        animator.SetFloat("Vertical", direction.y);
-
-        animator.SetFloat("CanWalk", direction.sqrMagnitude);
-    }
-}
