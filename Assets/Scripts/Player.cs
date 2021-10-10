@@ -9,18 +9,17 @@ public class Player : MonoBehaviour
     [SerializeField] public float speed;
 
     // Variable pour la vitesse max
-    [SerializeField] public float maxSpeed;
+    //[SerializeField] public float maxSpeed;
 
     // Variable pour les contrôles
     public Controls controls;
 
     // Varaible pour le déplacement
-    private float directionX;
-    private float directionY;
-    //private float dirction;
+    private Vector2 direction;
+    //private float direction;
 
     // Varaible pour attaquer
-    public bool canAttack = false;
+    //public bool canAttack = false;
 
     // Variable pour le rigid body
     private Rigidbody2D body2D;
@@ -46,7 +45,7 @@ public class Player : MonoBehaviour
     }
 
     // Contrôles
-    private void OnEnable()
+    /*private void OnEnable()
     {
         var controls = new Controls();
         controls.Enable();
@@ -68,7 +67,7 @@ public class Player : MonoBehaviour
         /*if (direction != 0)
         animator.SetBool("CanWalk", true);                                                                       // inferieur ou egal ))test d'arret pendant l'attaque
         else
-        animator.SetBool("CanWalk", false);*/
+        animator.SetBool("CanWalk", false);
 
     }
 
@@ -76,8 +75,8 @@ public class Player : MonoBehaviour
     private void Move_performed(InputAction.CallbackContext obj)
     {
         // direction prend la valeur du vecteur de l'objet
-        directionX = obj.ReadValue<float>();
-        directionY = obj.ReadValue<float>();
+        //directionX = obj.ReadValue<float>();
+        //directionY = obj.ReadValue<float>();
         //diection = obj.ReadVlue<Vector2>();
 
         // L'animation de marche se lance
@@ -89,33 +88,24 @@ public class Player : MonoBehaviour
     private void Move_canceled(InputAction.CallbackContext obj)
     {
         // direction prend la valeur de zéro
-        directionX = 0;
-        directionY = 0;
+        direction.x = 0;
+        direction.y = 0;
         //direction = Vector2.zero;
-    }
+    }*/
 
     private void FixedUpdate()
     {
-        var move = new Vector2(directionX * speed, directionY * speed);
-       // var moveY = Vector2.up * (direction*  speed);
-       // var moveX = Mathf.Abs(body2D.velocity.x * speed);
-
-        if (body2D.velocity.sqrMagnitude <= maxSpeed)
-        {
-            body2D.AddForce(move);
-        }
-
-        // if (body2D < maxSpeed)
-        //{
-        //    body2D.AddForce(direction);
-        //}
-        //animator.SetFloat("Walk", jsp);*/
+        body2D.MovePosition(body2D.position + direction * speed * Time.deltaTime);
+        //var move = new Vector2(direction.x * speed, direction.y * speed);
 
     }
 
     void Update()
     {
-        //directionX = Input.GetAxisRaw("Horizontal");
-        //directionY = Input.GetAxisRaw("Vertical");
+        direction.x = Input.GetAxisRaw("Horizontal");
+        //animator.SetFloat("Horizontal", direction.x.sqrMagnitude);
+
+        direction.y = Input.GetAxisRaw("Vertical");
+        //animator.SetFloat("Vertical", direction.y.sqrMagnitude);
     }
 }
