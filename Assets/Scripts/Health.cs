@@ -4,16 +4,15 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    /*private void OnTriggerEnter2D(Collider2D collision)
     {
-        //var damageMobs = FindObjetcOfType<Mob>();
-
-        //damageMobs.LoseHealth1();
-
-        var damagePlayer = FindObjectOfType<Player>();
-        // VOIR AVEC LES TAGS
-
-        damagePlayer.LoseHealth2();
-    }
+        var damageMobs = FindObjectOfType<Mobs>();
+        if (collision.CompareTag("Sword"))
+        {
+            if (Player.animator.SetBool("CanAttack", true))
+            {
+                var damageMobs.LoseHealth1();
+            }
+        }
+    }*/
 }
