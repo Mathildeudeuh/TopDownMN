@@ -103,9 +103,11 @@ public class Player : MonoBehaviour
     void Update()
     {
         direction.x = Input.GetAxisRaw("Horizontal");
-        //animator.SetFloat("Horizontal", direction.x.sqrMagnitude);
+        animator.SetFloat("Horizontal", direction.x);
 
         direction.y = Input.GetAxisRaw("Vertical");
-        //animator.SetFloat("Vertical", direction.y.sqrMagnitude);
+        animator.SetFloat("Vertical", direction.y);
+
+        animator.SetFloat("CanWalk", direction.sqrMagnitude);
     }
 }
