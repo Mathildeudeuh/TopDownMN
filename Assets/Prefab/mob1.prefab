@@ -112,6 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfe2f6f273eaf884ba7cd104d5ac6cbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
-  randomspawn: 0
   ennemies: []
+  mobSpeed: 0
+  speed: 1
+  Target: {fileID: 0}
