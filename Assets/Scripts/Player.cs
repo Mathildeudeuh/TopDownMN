@@ -8,6 +8,10 @@ public class Player : MonoBehaviour
     // Variable pour la force d'impulsion au déplacement
     [SerializeField] public float speed;
 
+    [SerializeField] public int health;
+
+    [SerializeField] public int healthToLose;
+
     // Variable pour les contrôles
     public Controls controls;
 
@@ -87,6 +91,12 @@ public class Player : MonoBehaviour
         
         
         //var move = new Vector2(direction.x * speed, direction.y * speed);
+    }
+
+
+    public void LoseHealth2()
+    {
+        health = health - healthToLose;
     }
 }
 
