@@ -94,7 +94,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.002424717, y: 0}
@@ -114,4 +114,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ennemies: []
   mobSpeed: 2
-  Target: {fileID: 0}
+  target1: {fileID: 0}
+  health: 6
+  healthToLose: 1
