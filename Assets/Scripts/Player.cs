@@ -9,9 +9,15 @@ public class Player : MonoBehaviour
     // Variable pour la force d'impulsion au déplacement
     [SerializeField] private float speed;
 
+    // Variable des points de vie
     [SerializeField] public int health;
 
+    // Varaible des dégâts reçus
     [SerializeField] public int healthToLose;
+
+    // Variable de l'écran de Game Over
+    [SerializeField] GameObject gameOver;
+    [SerializeField] GameObject scene;
 
     //[SerializeField] private Text pv;
 
@@ -28,7 +34,7 @@ public class Player : MonoBehaviour
     private Rigidbody2D body2D;
 
     // Variable pour les animation
-    public Animator animator;
+    private Animator animator;
 
 
     void Start()
@@ -67,7 +73,6 @@ public class Player : MonoBehaviour
         animator.SetFloat("CanWalk", direction.sqrMagnitude);
 
         Direction();
-
     }
 
 
@@ -106,6 +111,11 @@ public class Player : MonoBehaviour
     {
         health = health - healthToLose;
         Debug.Log(health);
+        if (health <= 0)
+        {
+            gameOver.SetActive(true);
+            scene.SetActive(false);
+        }
     }
 
     private void Direction()
@@ -114,12 +124,14 @@ public class Player : MonoBehaviour
             if (direction.x == 1 || direction.x == -1)
             {
                 animator.SetFloat("Horizontal", direction.x);
+                animator.SetBool("CanAttack", false);
   
             }
 
             else if (direction.y == 1 || direction.y == -1)
             {
                 animator.SetFloat("Vertical", direction.y);
+                animator.SetBool("CanAttack", false);
             }
         }
     }
