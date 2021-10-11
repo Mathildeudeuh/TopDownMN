@@ -13,6 +13,8 @@ public class Health : MonoBehaviour
         damagePlayer.LoseHealthPlayer();
 
         // On exécute la fonction Sword du script Player
+        //collision.CompareTag = "Sword";
         damagePlayer.Sword();
+
     }
 }
