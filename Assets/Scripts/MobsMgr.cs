@@ -98,6 +98,11 @@ public class MobsMgr : MonoBehaviour
     {
         health = health - healthToLose;
         Debug.Log(health);
+
+        /*if (health <= 0)
+        {
+            ennemie.SetActive(false);
+        }*/
     }
 }
 
