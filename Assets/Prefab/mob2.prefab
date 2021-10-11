@@ -113,6 +113,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ennemies: []
-  mobSpeed: 0
-  speed: 2
+  mobSpeed: 2
   Target: {fileID: 0}

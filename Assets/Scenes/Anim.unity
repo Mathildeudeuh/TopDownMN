@@ -3308,8 +3308,7 @@ MonoBehaviour:
   - {fileID: 1498228113928948175, guid: 219319faebd959d468c0b356dc96aff6, type: 3}
   - {fileID: 4279312560256906939, guid: c99972db38f02cd408c4fe98046c6128, type: 3}
   - {fileID: 7591459770855606545, guid: 66f07cc5148148d47b3d7d4641f1731e, type: 3}
-  mobSpeed: 0
-  speed: 0
+  mobSpeed: 2
   Target: {fileID: 415495761}
 --- !u!4 &733287723
 Transform:
