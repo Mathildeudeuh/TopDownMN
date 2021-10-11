@@ -27,7 +27,8 @@ public class MobsMgr : MonoBehaviour
 
     private Transform target;                  //nommer target    
 
-
+    [SerializeField] private int health;        //vie totale
+    [SerializeField] private int healthToLose;  //dégâts infligés par l'assaillant
 
     void Start()
     {
@@ -93,6 +94,10 @@ public class MobsMgr : MonoBehaviour
     }*/
 
 
-
+    public void LoseHealthEnnemy()
+    {
+        health = health - healthToLose;
+        Debug.Log(health);
+    }
 }
 

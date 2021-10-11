@@ -66,7 +66,7 @@ public class Player : MonoBehaviour
         // L'animation de marche se lance
         animator.SetFloat("CanWalk", direction.sqrMagnitude);
 
-        Sword();
+        Direction();
 
     }
 
@@ -102,29 +102,47 @@ public class Player : MonoBehaviour
         //var move = new Vector2(direction.x * speed, direction.y * speed);
     }
 
-    private void LoseHealth2()
+    public void LoseHealthPlayer()
     {
         health = health - healthToLose;
         Debug.Log(health);
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+
+    private void Direction()
     {
-        if (collision.CompareTag("Ennemy"))
         {
-            LoseHealth2();
+            if (direction.x == 1 || direction.x == -1)
+            {
+                animator.SetFloat("Horizontal", direction.x);
+  
+            }
+
+            else if (direction.y == 1 || direction.y == -1)
+            {
+                animator.SetFloat("Vertical", direction.y);
+            }
         }
     }
-
     public void Sword()
     {
         if (direction.x == 1 || direction.x == -1)
         {
             animator.SetFloat("Horizontal", direction.x);
+            if (canAttack == true)
+            {
+                var swordAttack = FindObjectOfType<MobsMgr>();
+                swordAttack.LoseHealthEnnemy();
+            }
         }
 
         else if (direction.y == 1 || direction.y == -1)
         {
             animator.SetFloat("Vertical", direction.y);
+            if (canAttack == true)
+            {
+                var swordAttack = FindObjectOfType<MobsMgr>();
+                swordAttack.LoseHealthEnnemy();
+            }
         }
     }
 }
